@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nhatthanh.shopping.product.fragment.NavFragment">
+
+    <ImageView
+        android:id="@+id/img_close_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="114dp"
+        android:text="@string/balance"
+        android:textAppearance="@style/text_draw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        app:layout_constraintStart_toEndOf="@id/img_vector"
+        android:layout_marginStart="32dp"
+        android:id="@+id/tv_my_reward_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="41dp"
+        android:text="@string/my_reward_point"
+        android:textAppearance="@style/text_draw"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_vector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="116dp"
+        android:src="@drawable/vector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="6dp"
+        android:id="@+id/tv_score_point"
+        android:text="$809,87"
+        android:textAppearance="@style/balance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_balance" />
+
+    <TextView
+        android:id="@+id/tv_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="97dp"
+        android:text="800"
+        android:textAppearance="@style/points"
+        app:layout_constraintStart_toEndOf="@id/img_vector"
+        app:layout_constraintTop_toBottomOf="@+id/tv_my_reward_point" />
+
+    <TextView
+        android:id="@+id/tv_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        app:layout_constraintStart_toEndOf="@id/tv_points"
+        android:layout_marginStart="4dp"
+        android:text="Points"
+        android:textAppearance="@style/points_text"
+        app:layout_constraintTop_toBottomOf="@+id/tv_my_reward_point" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_nav"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="179.31dp"
+        app:layout_constraintBottom_toTopOf="@id/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_nav" />
+
+    <LinearLayout
+        android:layout_marginStart="36.5dp"
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginBottom="45.39dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <ImageView
+            android:id="@+id/img_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logout" />
+
+        <TextView
+            android:id="@+id/title_nav"
+            android:layout_width="76dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="17dp"
+            android:text="Logout"
+            android:textSize="13sp"
+            android:textColor="#8B9E9E"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

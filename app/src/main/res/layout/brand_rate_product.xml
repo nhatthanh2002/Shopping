@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:id="@+id/layout_brand_rate"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/logo_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/apple_brand" />
+
+    <TextView
+        android:id="@+id/tv_name_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Applestore"
+        android:textAppearance="@style/brand_product" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/dot" />
+
+    <include
+        android:id="@+id/layout_rate_product"
+        android:layout_marginStart="8dp"
+        layout="@layout/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="4.5"
+        android:id="@+id/tv_rate"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/tv_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F7F9"
+    tools:context=".product.fragment.YourCartFragment">
+
+    <View
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:src="@drawable/back"
+        app:layout_constraintBottom_toBottomOf="@id/toolBar"
+        app:layout_constraintStart_toStartOf="@id/toolBar"
+        app:layout_constraintTop_toTopOf="@id/toolBar"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/title_toolBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Cart"
+        android:textAppearance="@style/title_toolBar"
+        app:layout_constraintBottom_toBottomOf="@id/toolBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/toolBar"
+        app:layout_constraintTop_toTopOf="@id/toolBar"
+        tools:ignore="HardcodedText" />
+
+    <CheckBox
+        android:id="@+id/check_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Select All Item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/rvCart"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="36dp"
+        android:background="#F3F7F9"
+        app:layout_constraintBottom_toTopOf="@id/layout_bottom"
+        app:layout_constraintTop_toBottomOf="@id/check_all"
+        tools:listitem="@layout/item_cart" />
+
+    <TextView
+        android:layout_width="185.29dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_button"
+        android:gravity="center"
+        android:text="Buy item"
+        android:textAppearance="@style/add_to_cart"
+        app:layout_constraintBottom_toBottomOf="@id/layout_bottom"
+        app:layout_constraintEnd_toEndOf="@id/layout_bottom"
+        app:layout_constraintTop_toTopOf="@id/layout_bottom"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_total_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:text="Total Payment"
+        android:textAppearance="@style/total_payme"
+        app:layout_constraintStart_toStartOf="@id/layout_bottom"
+        app:layout_constraintTop_toTopOf="@id/layout_bottom"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="41dp"
+        android:text="$1,468.20"
+        android:textAppearance="@style/total_payme_price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/layout_bottom"
+        app:layout_constraintTop_toBottomOf="@id/tv_total_payment"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="116.44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

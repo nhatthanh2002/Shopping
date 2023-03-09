@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".product.fragment.DetailsFragment">
+
+
+    <View
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:src="@drawable/back"
+        app:layout_constraintBottom_toBottomOf="@id/toolBar"
+        app:layout_constraintStart_toStartOf="@id/toolBar"
+        app:layout_constraintTop_toTopOf="@id/toolBar"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/chart_black"
+        app:layout_constraintBottom_toBottomOf="@id/toolBar"
+        app:layout_constraintEnd_toEndOf="@id/toolBar"
+        app:layout_constraintTop_toTopOf="@id/toolBar"
+        tools:ignore="ContentDescription" />
+
+    <View
+        android:id="@+id/bg_product"
+        android:layout_width="match_parent"
+        android:layout_height="251dp"
+        android:background="#F3D9E8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/product_detail"
+        app:layout_constraintBottom_toBottomOf="@id/bg_product"
+        app:layout_constraintEnd_toEndOf="@id/bg_product"
+        app:layout_constraintStart_toStartOf="@id/bg_product"
+        app:layout_constraintTop_toTopOf="@id/bg_product"
+        tools:ignore="ContentDescription" />
+
+    <View
+        android:id="@+id/bg_check"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="226dp"
+        android:layout_marginEnd="21dp"
+        android:background="@drawable/custom_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        tools:layout_editor_absoluteX="333dp"
+        tools:layout_editor_absoluteY="290dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/custom_heart_check"
+        app:layout_constraintBottom_toBottomOf="@id/bg_check"
+        app:layout_constraintEnd_toEndOf="@id/bg_check"
+        app:layout_constraintStart_toStartOf="@id/bg_check"
+        app:layout_constraintTop_toTopOf="@id/bg_check" />
+
+    <TextView
+        android:id="@+id/tv_name_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="27dp"
+        android:text="Imac 27 Inch 5k"
+        android:textAppearance="@style/tv_product_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_product"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_price_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="23dp"
+        android:text="$999.99"
+        android:textAppearance="@style/tv_price_product"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_product"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="23dp"
+        android:text="$1,322.99"
+        android:textAppearance="@style/promotion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_price_product"
+        tools:ignore="HardcodedText" />
+
+    <include
+        android:id="@+id/layout_brand_rate_product_detail"
+        layout="@layout/brand_rate_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name_product" />
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_brand_rate_product_detail"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="#01A688"
+            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorHeight="1dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#01A688"
+            app:tabTextAppearance="@style/quantity"
+            app:tabTextColor="#8B9E9E" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/layout_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+
+    <TextView
+        android:id="@+id/btn_add_cart"
+        android:layout_width="185.29dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/add_to_cart"
+        android:textAppearance="@style/add_to_cart"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@id/layout_bottom"
+        app:layout_constraintEnd_toEndOf="@id/layout_bottom"
+        app:layout_constraintTop_toTopOf="@id/layout_bottom" />
+
+    <ImageView
+        android:id="@+id/btn_subtract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/subtract"
+        app:layout_constraintBottom_toBottomOf="@id/layout_bottom"
+        app:layout_constraintStart_toStartOf="@id/layout_bottom"
+        app:layout_constraintTop_toTopOf="@id/layout_bottom"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:text="1"
+        android:textAppearance="@style/quantity"
+        app:layout_constraintBottom_toBottomOf="@id/layout_bottom"
+        app:layout_constraintStart_toEndOf="@id/btn_subtract"
+        app:layout_constraintTop_toTopOf="@id/layout_bottom"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:background="@drawable/add"
+        app:layout_constraintBottom_toBottomOf="@id/layout_bottom"
+        app:layout_constraintStart_toEndOf="@id/tv_quantity"
+        app:layout_constraintTop_toTopOf="@id/layout_bottom"
+        tools:ignore="ContentDescription" />
+
+
+    <View
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="93.85dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

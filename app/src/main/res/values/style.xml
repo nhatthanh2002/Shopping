@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="welcome" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="register" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="sign_in_to_continue" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="add_to_cart" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="enter_your_personal_details_to_create_your_account" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="sing_in" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="your_email_" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#8B9E9E</item>
+    </style>
+
+    <style name="password" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#8B9E9E</item>
+    </style>
+
+    <style name="don_not_have_an_account_sing_up" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="sing_in_sing_up" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#FF8933</item>
+    </style>
+
+    <style name="ed_sing_in" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="CheckBoxStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@color/text1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:colorAccent">#FFB039</item>
+    </style>
+
+    <style name="forgot_password" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#FF8933</item>
+    </style>
+
+    <style name="home" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="search_product_home">
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#5F6E7C</item>
+    </style>
+
+    <style name="text_draw" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">
+            11sp
+        </item>
+        <item name="android:letterSpacing">
+            0.02
+        </item>
+        <item name="android:textColor">
+            #8B9E9E
+        </item>
+    </style>
+
+    <style name="balance">
+        <item name="android:textSize">17sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#06AB8D</item>
+    </style>
+
+    <style name="points">
+        <item name="android:textSize">17sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#FFB039</item>
+    </style>
+
+    <style name="points_text">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#FFB039</item>
+    </style>
+
+    <style name="text_item_nav">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#06AB8D</item>
+    </style>
+
+    <style name="toolbar">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="tab_text">
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#8B9E9E</item>
+    </style>
+
+    <style name="tab_text_detail">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#8B9E9E</item>
+    </style>
+
+    <style name="tab_text_selected">
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#E98E06</item>
+    </style>
+
+    <style name="item_name_product">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="item_brand_store_product">
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#8B9E9E</item>
+    </style>
+
+    <style name="item_rate_product">
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="item_price_product">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#02A88A</item>
+    </style>
+
+    <style name="item_promotion_product">
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#F25822</item>
+    </style>
+
+    <style name="tv_product_detail">
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="tv_price_product">
+        <item name="android:textSize">19sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#02A88A</item>
+    </style>
+
+    <style name="promotion">
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#F25822</item>
+    </style>
+
+    <style name="brand_product">
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="tv_rate">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="quantity">
+        <item name="android:textSize">12.74sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="title_toolBar">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="total_payme">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="total_payme_price">
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#02A88A</item>
+    </style>
+
+    <style name="tv_name_product_cart">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="tv_price_product_cart">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#02A88A</item>
+    </style>
+
+</resources>
