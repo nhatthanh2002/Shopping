@@ -1,24 +1,38 @@
 package com.nhatthanh.shopping.login.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import androidx.lifecycle.viewmodel.CreationExtras
+import com.nhatthanh.shopping.localData.repository.UserRepository
 import com.nhatthanh.shopping.login.model.User
+import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User> = _user
+class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    fun setUser(user: User) {
-        _user.value = user
+    val allUser: LiveData<List<User>> = userRepository.allUser.asLiveData()
+
+    fun insertUser(user: User) = viewModelScope.launch {
+        userRepository.insertUser(user)
     }
 
 
     fun login(email: String, password: String): Boolean {
-        return user.value!!.email == email && user.value!!.password == password
+        for (i in allUser.value!!) {
+            return i.email == email && i.password == password
+        }
+        return false
     }
 
     fun checkRegister(): Boolean {
-        return user.value != null
+        return allUser.value != null
+    }
+}
+
+class LoginMolderFactory(private val userRepository: UserRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return LoginViewModel(userRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

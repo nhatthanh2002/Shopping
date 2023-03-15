@@ -25,13 +25,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3 day ago"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <LinearLayout
+    <include
+        layout="@layout/rate"
         android:id="@+id/rate_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,40 +41,10 @@
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toEndOf="@id/img_avatar"
-        app:layout_constraintTop_toBottomOf="@id/tv_name_user">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:src="@drawable/rate_product_yellow" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:src="@drawable/rate_product_yellow" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:src="@drawable/rate_product_yellow" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:src="@drawable/rate_product_yellow" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:src="@drawable/rate_product" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/tv_name_user"/>
 
     <TextView
+        android:id="@+id/tv_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="35dp"

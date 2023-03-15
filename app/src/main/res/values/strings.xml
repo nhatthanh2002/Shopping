@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Shopping</string>
+    <string name="Home">Home</string>
+    <string name="Feeds">Feeds</string>
+    <string name="My_profile">My Profile</string>
+    <string name="Transaction">Transaction</string>
     <string name="home">home</string>
     <string name="welcome">Welcome</string>
     <string name="sing_in">Sing In</string>

@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
-        android:name="com.nhatthanh.shopping.login.fragment.WelcomeFragment"
+        android:name="com.nhatthanh.shopping.login.fragment.LoginFragment"
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

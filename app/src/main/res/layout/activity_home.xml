@@ -7,117 +7,146 @@
     android:layout_height="match_parent">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/header_layout"
+
+        <View
+            android:id="@+id/toolBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="40dp"
+            android:background="#06AB8D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/title_toolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Home"
+            android:textAppearance="@style/home"
+            app:layout_constraintBottom_toBottomOf="@id/toolBar"
+            app:layout_constraintStart_toEndOf="@id/img_open_menu"
+            app:layout_constraintTop_toTopOf="@id/toolBar"
+            tools:ignore="HardcodedText" />
 
-            <View
-                android:id="@+id/toolBar"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="#06AB8D"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/img_open_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:src="@drawable/menu_home"
+            app:layout_constraintBottom_toBottomOf="@id/toolBar"
+            app:layout_constraintStart_toStartOf="@id/toolBar"
+            app:layout_constraintTop_toTopOf="@id/toolBar"
+            tools:ignore="ContentDescription" />
 
-            <TextView
-                android:text="Home"
-                app:layout_constraintTop_toTopOf="@id/toolBar"
-                app:layout_constraintStart_toEndOf="@id/img_open_menu"
-                android:layout_marginStart="24dp"
-                app:layout_constraintBottom_toBottomOf="@id/toolBar"
-                android:textAppearance="@style/home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/chart"
+            app:layout_constraintBottom_toBottomOf="@id/toolBar"
+            app:layout_constraintEnd_toEndOf="@id/toolBar"
+            app:layout_constraintTop_toTopOf="@id/toolBar"
+            tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:id="@+id/img_open_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:src="@drawable/menu_home"
-                app:layout_constraintBottom_toBottomOf="@id/toolBar"
-                app:layout_constraintStart_toStartOf="@id/toolBar"
-                app:layout_constraintTop_toTopOf="@id/toolBar" />
+        <View
+            android:id="@+id/dot_red"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/dot_red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/cart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="25dp"
-                android:src="@drawable/chart"
-                app:layout_constraintBottom_toBottomOf="@id/toolBar"
-                app:layout_constraintEnd_toEndOf="@id/toolBar"
-                app:layout_constraintTop_toTopOf="@id/toolBar" />
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/fragment_current"
-                        android:name="com.nhatthanh.shopping.product.fragment.HomeFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toTopOf="@id/tab_layout"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolBar" />
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tab_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="88dp"
-                        android:background="#FFFFFF"
-                        app:tabGravity="fill"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:tabIconTint="@color/your_color_selector"
-                        app:tabIndicatorColor="#E98E06"
-                        app:tabIndicatorGravity="top"
-                        app:tabIndicatorHeight="2dp"
-                        app:tabMode="fixed"
-                        app:tabSelectedTextColor="#E98E06"
-                        app:tabTextAppearance="@style/tab_text"
-                        app:tabTextColor="#8B9E9E">
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:icon="@drawable/home_tab"
-                            android:text="Home"
-                            android:textAppearance="@style/tab_text"
-                            tools:ignore="HardcodedText" />
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:icon="@drawable/feeds"
-                            android:text="Feeds"
-                            android:textAppearance="@style/tab_text"
-                            tools:ignore="HardcodedText" />
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:icon="@drawable/transaction"
-                            android:text="Transaction"
-                            android:textAppearance="@style/tab_text"
-                            tools:ignore="HardcodedText" />
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:icon="@drawable/profile"
-                            android:text="My Profile"
-                            android:textAppearance="@style/tab_text"
-                            tools:ignore="HardcodedText" />
-                    </com.google.android.material.tabs.TabLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <TextView
+            android:id="@+id/tv_status_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="#FFFFFF"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@id/dot_red"
+            app:layout_constraintEnd_toEndOf="@id/dot_red"
+            app:layout_constraintStart_toStartOf="@id/dot_red"
+            app:layout_constraintTop_toTopOf="@id/dot_red"
+            tools:ignore="HardcodedText,SmallSp" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/container_detail_fragment"
-            android:visibility="gone"
+            android:id="@+id/fragment_current"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:name="com.nhatthanh.shopping.product.fragment.HomeFragment"
+            app:layout_constraintBottom_toTopOf="@id/tab_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabGravity="fill"
+            app:tabIconTint="@color/your_color_selector"
+            app:tabIndicatorColor="#E98E06"
+            app:tabIndicatorGravity="top"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#E98E06"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabTextColor="#8B9E9E">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/home_tab"
+                android:text="Home"
+                android:textAppearance="@style/tab_text"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/feeds"
+                android:text="Feeds"
+                android:textAppearance="@style/tab_text"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/transaction"
+                android:text="Transaction"
+                android:textAppearance="@style/tab_text"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/profile"
+                android:text="My Profile"
+                android:textAppearance="@style/tab_text"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.tabs.TabLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/yourcart_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

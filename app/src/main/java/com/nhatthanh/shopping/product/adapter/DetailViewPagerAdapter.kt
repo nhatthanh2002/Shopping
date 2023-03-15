@@ -18,4 +18,5 @@ class DetailViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecy
             else -> Fragment()
         }
     }
+
 }

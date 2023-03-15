@@ -1,9 +1,8 @@
-package com.nhatthanh.shopping.login.model
+package com.nhatthanh.shopping.product.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.nhatthanh.shopping.product.model.Product
 
 @Entity(tableName = "cart")
 data class Cart(
@@ -14,8 +13,10 @@ data class Cart(
     var quantityItem: Int = 0,
     @ColumnInfo(name = "sumPrice")
     var sumPrice: Double = 0.0,
-    @ColumnInfo(name = "checkItem")
-    var checkItem: Boolean = false,
-    @ColumnInfo(name = "productItem")
-    var productItem: Product
+    @ColumnInfo(name = "priceCart")
+    val nameCart: String = "",
+    @ColumnInfo(name = "imageCart")
+    val imageCart: String = "",
+    @ColumnInfo(name = "checkCart")
+    var checkCart: Boolean =false
 )

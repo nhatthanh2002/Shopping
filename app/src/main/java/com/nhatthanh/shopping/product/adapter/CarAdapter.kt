@@ -4,41 +4,73 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.nhatthanh.shopping.Utils
 import com.nhatthanh.shopping.databinding.ItemCartBinding
-import com.nhatthanh.shopping.login.model.Cart
+import com.nhatthanh.shopping.product.listenerevent.CartListener
+import com.nhatthanh.shopping.product.model.Cart
 
-class CarAdapter(private val context: Context, private val list: List<Cart>) :
+@Suppress("DEPRECATION")
+class CarAdapter(
+    private val context: Context,
+    private val list: List<Cart>,
+    private val cartListener: CartListener
+) :
     RecyclerView.Adapter<CarAdapter.MyViewHolder>() {
-    inner class MyViewHolder(binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root) {
-        val checkItemCart = binding.checkItem
-        val imgCart = binding.imgProductCartItem
-        val nameCart = binding.tvNameProductCart
-        val sum = binding.tvPriceProductCart
-        val quantity = binding.tvQuantityItem
-        val add = binding.btnAddItem
-        val subtract = binding.btnSubtractItem
-        val delete = binding.btnDelete
+
+    private val listCartSelected = ArrayList<Cart>()
+
+    inner class MyViewHolder(val binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Cart) {
+            with(binding) {
+                with(item) {
+                    Glide.with(context).load(imageCart).centerCrop().override(80, 80)
+                        .into(imgProductCartItem)
+                    tvNameProductCart.text = nameCart
+                    tvPriceProductCart.text =
+                        Utils.formatCurrency.format(sumPrice * quantityItem).toString()
+                    tvQuantityItem.text = quantityItem.toString()
+                    btnDelete.setOnClickListener { cartListener.deleteCart(id) }
+                    checkItem.setOnClickListener {
+                        if (checkItem.isChecked) {
+                            listCartSelected.add(item)
+                            cartListener.setCheckItem(item,adapterPosition)
+                        } else {
+                            listCartSelected.remove(item)
+                            cartListener.setCheckItem(item,adapterPosition)
+                        }
+                        cartListener.cartSelected(listCartSelected)
+                    }
+
+                    btnAddItem.setOnClickListener {
+                        cartListener.addCart(id, quantityItem)
+                    }
+                    btnSubtractItem.setOnClickListener {
+                        cartListener.subtractCart(
+                            id,
+                            quantityItem
+                        )
+                    }
+
+                }
+            }
+        }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(ItemCartBinding.inflate(LayoutInflater.from(context), parent, false))
+        return MyViewHolder(
+            ItemCartBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        with(holder) {
-            with(list[position]) {
-                checkItemCart.isChecked = checkItem
-                imgCart.setImageResource(productItem.image)
-                nameCart.text = productItem.nameProduct
-                sum.text = (productItem.price * quantityItem).toString()
-                quantity.text = quantityItem.toString()
-                add.setOnClickListener {
-
-                }
-                subtract.setOnClickListener { }
-                delete.setOnClickListener { }
-            }
-        }
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int = list.size

@@ -9,6 +9,7 @@ class User(
     @ColumnInfo(name = "fullName")
     var fullName: String = "",
     @PrimaryKey
+    @ColumnInfo(name = "email")
     var email: String = "",
     @ColumnInfo(name = "phoneNumber")
     var phoneNumber: String = "",

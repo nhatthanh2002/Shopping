@@ -7,14 +7,16 @@
     tools:context=".product.fragment.ReviewFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_marginHorizontal="25dp"
+        android:id="@+id/rv_reviews"
         android:layout_marginTop="25dp"
+        android:layout_marginBottom="16dp"
         tools:listitem="@layout/item_review"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_height="0dp"/>
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

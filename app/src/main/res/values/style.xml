@@ -248,4 +248,10 @@
         <item name="android:textColor">#02A88A</item>
     </style>
 
+    <style name="ok">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 </resources>

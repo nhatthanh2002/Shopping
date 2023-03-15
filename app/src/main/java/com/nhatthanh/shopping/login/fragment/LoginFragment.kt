@@ -2,7 +2,6 @@ package com.nhatthanh.shopping.login.fragment
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,24 +9,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nhatthanh.shopping.R
 import com.nhatthanh.shopping.Utils
 import com.nhatthanh.shopping.product.activity.HomeActivity
 import com.nhatthanh.shopping.databinding.FragmentWelcomeBinding
-import com.nhatthanh.shopping.localData.AppDataBase
-import com.nhatthanh.shopping.login.model.User
+import com.nhatthanh.shopping.localData.application.MainApplication
+import com.nhatthanh.shopping.login.viewmodel.LoginMolderFactory
 import com.nhatthanh.shopping.login.viewmodel.LoginViewModel
 
-class WelcomeFragment : Fragment() {
+class LoginFragment : Fragment() {
     private lateinit var binding: FragmentWelcomeBinding
-    private val loginViewModel: LoginViewModel by activityViewModels()
+    private val loginViewModel: LoginViewModel by activityViewModels {
+        LoginMolderFactory((requireActivity().application as MainApplication).userRepository)
+    }
+
     private val sharedPreferences by lazy {
         activity?.getSharedPreferences(Utils.KEY_USER, Context.MODE_PRIVATE)
     }
-//    private lateinit var dataBase: AppDataBase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,37 +37,40 @@ class WelcomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        dataBase = AppDataBase.getDatabase(requireContext())!!
-//        val user = dataBase.userDao().getUser()
         setUpUser()
-
-
         binding.btnSingIn.setOnClickListener {
-            if (loginViewModel.checkRegister()) {
-                if (loginViewModel.login(
-                        binding.edYourEmail.text.toString(),
-                        binding.edPassword.text.toString()
-                    )
-                ) {
-                    saveUser(
-                        binding.edYourEmail.text.toString(),
-                        binding.edPassword.text.toString(), binding.rmbUser.isChecked
-                    )
-                    val intent = Intent(requireActivity(), HomeActivity::class.java)
-                    startActivity(intent)
+            loginViewModel.allUser.observe(viewLifecycleOwner) {
+                if (loginViewModel.checkRegister()) {
+                    if (loginViewModel.login(
+                            binding.edYourEmail.text.toString(),
+                            binding.edPassword.text.toString()
+                        )
+                    ) {
+                        saveUser(
+                            binding.edYourEmail.text.toString(),
+                            binding.edPassword.text.toString(),
+                            binding.rmbUser.isChecked
+                        )
+                        val intent = Intent(requireActivity(), HomeActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Email or password wrong",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
                 } else {
-                    Toast.makeText(requireContext(), "Email or password wrong", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "Do not have an account", Toast.LENGTH_SHORT)
                         .show()
                 }
-            } else {
-                Toast.makeText(requireContext(), "Bạn chưa có tài khoản", Toast.LENGTH_SHORT).show()
             }
         }
-//        binding.tvSingUpLayout.tvSingUp.setOnClickListener {
-//            activity?.supportFragmentManager?.beginTransaction()
-//                ?.replace(R.id.container, RegisterFragment())?.addToBackStack(null)?.commit()
-//        }
-        setUpData()
+        binding.tvSingUpLayout.tvSingUp.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.container, RegisterFragment())?.addToBackStack(null)?.commit()
+        }
     }
 
     private fun saveUser(email: String, password: String, check: Boolean) {
@@ -79,7 +80,7 @@ class WelcomeFragment : Fragment() {
         } else {
             editor?.putString(Utils.EMAIL_USER, email)
             editor?.putString(Utils.PASSWORD_USER, password)
-            editor?.putBoolean(Utils.REMEMBER_USER, check)
+            editor?.putBoolean(Utils.REMEMBER_USER, true)
         }
         editor?.apply()
     }
@@ -97,9 +98,8 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun setUpData() {
-        loginViewModel.user.observe(viewLifecycleOwner) {
-            binding.edYourEmail.setText(it.email)
-            binding.edPassword.setText(it.password)
+        loginViewModel.allUser.observe(viewLifecycleOwner) {
+
         }
     }
 

@@ -47,13 +47,14 @@
         android:layout_marginTop="20dp"
         android:text="Select All Item"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolBar" />
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        tools:ignore="HardcodedText" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/rvCart"
         android:layout_marginHorizontal="20dp"
+        android:id="@+id/rvCart"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="36dp"
         android:background="#F3F7F9"
@@ -61,12 +62,24 @@
         app:layout_constraintTop_toBottomOf="@id/check_all"
         tools:listitem="@layout/item_cart" />
 
+    <View
+        android:background="@drawable/background_add_cart"
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="116.44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
+        android:id="@+id/tv_buy_item"
         android:layout_width="185.29dp"
+        android:layout_marginEnd="24dp"
         android:layout_height="50dp"
         android:background="@drawable/custom_button"
         android:gravity="center"
-        android:text="Buy item"
+        android:text="Buy (0 item)"
         android:textAppearance="@style/add_to_cart"
         app:layout_constraintBottom_toBottomOf="@id/layout_bottom"
         app:layout_constraintEnd_toEndOf="@id/layout_bottom"
@@ -86,24 +99,16 @@
         tools:ignore="HardcodedText" />
 
     <TextView
+        android:id="@+id/total_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="41dp"
-        android:text="$1,468.20"
+        android:text="0"
         android:textAppearance="@style/total_payme_price"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/layout_bottom"
         app:layout_constraintTop_toBottomOf="@id/tv_total_payment"
         tools:ignore="HardcodedText" />
-
-    <View
-        android:id="@+id/layout_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="116.44dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

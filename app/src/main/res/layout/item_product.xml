@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="140dp"
     android:layout_height="190dp"
     android:id="@+id/layout_product"
@@ -23,17 +24,22 @@
 
         <ImageView
             android:id="@+id/img_product"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="45dp"
-            android:layout_marginVertical="5dp"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp"
             android:src="@drawable/img_product"
             app:layout_constraintBottom_toBottomOf="@id/background_product"
             app:layout_constraintEnd_toEndOf="@id/background_product"
             app:layout_constraintStart_toStartOf="@id/background_product"
-            app:layout_constraintTop_toTopOf="@id/background_product" />
+            app:layout_constraintTop_toTopOf="@id/background_product"
+            tools:ignore="ContentDescription" />
 
         <TextView
+            android:singleLine="true"
+            android:maxLines="1"
+            android:marqueeRepeatLimit="marquee_forever"
             android:id="@+id/tv_name_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +48,8 @@
             android:text="Imac 27 Inch 5k"
             android:textAppearance="@style/item_name_product"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/background_product" />
+            app:layout_constraintTop_toBottomOf="@id/background_product"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_brand_store_product"
@@ -53,7 +60,8 @@
             android:text="Applestore"
             android:textAppearance="@style/item_brand_store_product"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name_product" />
+            app:layout_constraintTop_toBottomOf="@id/tv_name_product"
+            tools:ignore="HardcodedText" />
 
         <View
             android:layout_width="3dp"
@@ -73,7 +81,8 @@
             android:layout_marginTop="8.65dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/star" />
+            android:src="@drawable/star"
+            tools:ignore="ContentDescription" />
         <TextView
             android:id="@+id/tv_rate"
             app:layout_constraintStart_toEndOf="@id/star"
@@ -83,7 +92,8 @@
             android:text="4.5"
             android:layout_marginStart="3dp"
             android:layout_marginTop="37dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_price_product"
@@ -94,7 +104,8 @@
             android:layout_marginTop="12dp"
             android:layout_marginStart="10.98dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_promotion"
@@ -105,7 +116,8 @@
             android:text="$122.00"
             android:textAppearance="@style/item_promotion_product"
             app:layout_constraintStart_toEndOf="@id/tv_price_product"
-            app:layout_constraintTop_toBottomOf="@id/background_product" />
+            app:layout_constraintTop_toBottomOf="@id/background_product"
+            tools:ignore="HardcodedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

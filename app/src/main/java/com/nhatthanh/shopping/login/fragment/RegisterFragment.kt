@@ -1,6 +1,7 @@
 package com.nhatthanh.shopping.login.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.nhatthanh.shopping.databinding.FragmentRegisterBinding
-import com.nhatthanh.shopping.localData.AppDataBase
+import com.nhatthanh.shopping.localData.application.MainApplication
 import com.nhatthanh.shopping.login.model.User
+import com.nhatthanh.shopping.login.viewmodel.LoginMolderFactory
 import com.nhatthanh.shopping.login.viewmodel.LoginViewModel
 
 
@@ -20,8 +22,11 @@ class RegisterFragment : Fragment() {
     private var phoneNumber = ""
     private var password = ""
     private var confirmPassword = ""
-    private val loginViewModel: LoginViewModel by activityViewModels()
-    private lateinit var dataBase: AppDataBase
+
+    private val loginViewModel: LoginViewModel by activityViewModels {
+        LoginMolderFactory((requireActivity().application as MainApplication).userRepository)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,21 +37,29 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        dataBase = AppDataBase.getDatabase(requireContext())!!
         binding.btnSingUp.setOnClickListener {
             if (validate()) {
-                loginViewModel.setUser(addUser())
-//                dataBase.userDao().insertUser(addUser())
-                if (loginViewModel.checkRegister()) {
-                    Toast.makeText(requireContext(), "Đăng kí thành công", Toast.LENGTH_SHORT)
-                        .show()
+                loginViewModel.insertUser(addUser())
+                loginViewModel.allUser.observe(viewLifecycleOwner) {
+                    if (loginViewModel.checkRegister()) {
+                        Toast.makeText(requireContext(), "Register success", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        Toast.makeText(requireContext(), "Register failure", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
             }
         }
-//        binding.layoutSingIn.tvSingIn.setOnClickListener {
-//            activity?.supportFragmentManager?.popBackStack()
-//        }
+        binding.layoutSingIn.tvSingIn.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
+        }
 
+        loginViewModel.allUser.observe(viewLifecycleOwner) { list ->
+            for (i in list) {
+                Log.e("User_Item", i.email)
+            }
+        }
     }
 
     private fun addUser(): User {

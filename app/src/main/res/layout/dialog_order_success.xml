@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="335dp"
+    android:layout_height="430dp"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_code">
+
+    <ImageView
+        android:id="@+id/success"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="61dp"
+        android:src="@drawable/success_order"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_success"
+        android:layout_marginTop="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your order has been successfull"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/success" />
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="we will contact the seller so that it can \n be sent immediately to the destination"
+        android:textColor="#516971"
+        android:textSize="12sp"
+        android:layout_marginHorizontal="42dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_success" />
+
+    <TextView
+        android:id="@+id/btn_ok"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="42dp"
+        android:background="@drawable/custom_button"
+        android:gravity="center"
+        android:text="OK"
+        android:textAppearance="@style/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
