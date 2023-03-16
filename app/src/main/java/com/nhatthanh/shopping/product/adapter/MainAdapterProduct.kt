@@ -45,8 +45,8 @@ class MainAdapterProduct(
             with(binding) {
                 with(item) {
                     tvNameProduct.text = name
-                    tvPromotion.text = price.toString()
-                    tvPriceProduct.text = sale_price.toString()
+                    tvPromotion.text = Utils.formatCurrency.format(price).toString()
+                    tvPriceProduct.text = Utils.formatCurrency.format(sale_price).toString()
                     tvRate.text = star.toString()
                     tvBrandStoreProduct.text = seller
                     Glide.with(context)

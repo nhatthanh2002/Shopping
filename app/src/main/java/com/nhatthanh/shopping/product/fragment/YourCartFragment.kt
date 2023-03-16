@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nhatthanh.shopping.R
 import com.nhatthanh.shopping.Utils
@@ -14,6 +15,7 @@ import com.nhatthanh.shopping.databinding.FragmentYourCartBinding
 import com.nhatthanh.shopping.localData.application.MainApplication
 import com.nhatthanh.shopping.product.activity.HomeActivity
 import com.nhatthanh.shopping.product.adapter.CarAdapter
+import com.nhatthanh.shopping.product.adapter.DiffUtilCarAdapter
 import com.nhatthanh.shopping.product.listenerevent.CartListener
 import com.nhatthanh.shopping.product.model.Cart
 import com.nhatthanh.shopping.product.viewmodel.CartMolderFactory
@@ -23,6 +25,7 @@ class YourCartFragment : Fragment(), CartListener {
     private lateinit var binding: FragmentYourCartBinding
     private lateinit var homeActivity: HomeActivity
     private lateinit var carAdapter: CarAdapter
+
     private val cartViewModel: CartViewModel by activityViewModels {
         CartMolderFactory((requireActivity().application as MainApplication).cartRepository)
     }
@@ -48,6 +51,8 @@ class YourCartFragment : Fragment(), CartListener {
         binding.btnBack.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()
         }
+
+
         cartViewModel.listCart.observe(viewLifecycleOwner) { listCart ->
             binding.rvCart.setHasFixedSize(true)
             binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
@@ -56,13 +61,17 @@ class YourCartFragment : Fragment(), CartListener {
         }
     }
 
+    private fun checkCartSelected(id: Int, selected: Boolean) {
+        cartViewModel.updateCartSelected(id, selected)
+    }
+
     private fun choiceAllItem() {
         with(binding) {
             checkAll.setOnClickListener {
                 if (checkAll.isChecked) {
                     cartViewModel.listCartSelected.observe(viewLifecycleOwner) { listItem ->
-                        for (item in listItem) {
-                            item.checkCart = true
+                        listItem.map {
+
                         }
                     }
                 }
@@ -70,14 +79,7 @@ class YourCartFragment : Fragment(), CartListener {
         }
     }
 
-    override fun setCheckItem(cart: Cart, position: Int) {
-        cart.checkCart = true
-        cartViewModel.apply {
-            setCheckedItem(cart)
-            checkItem.observe(viewLifecycleOwner) {
-
-            }
-        }
+    override fun setCheckItem(cart: Cart, id: Int) {
     }
 
     override fun addCart(id: Int, add: Int) {

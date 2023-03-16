@@ -34,10 +34,12 @@ class CarAdapter(
                     checkItem.setOnClickListener {
                         if (checkItem.isChecked) {
                             listCartSelected.add(item)
-                            cartListener.setCheckItem(item,adapterPosition)
+                            cartListener.setCheckItem(item, id)
+                            checkItem.isChecked=true
                         } else {
                             listCartSelected.remove(item)
-                            cartListener.setCheckItem(item,adapterPosition)
+                            cartListener.setCheckItem(item, id)
+                            checkItem.isChecked=false
                         }
                         cartListener.cartSelected(listCartSelected)
                     }

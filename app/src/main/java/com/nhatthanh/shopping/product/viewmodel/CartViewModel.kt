@@ -35,6 +35,16 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
         return _totalPriceItemCart
     }
 
+    fun setCheckItemCartSelected(id: Int, selected: Boolean) {
+        listCart.value?.map {
+            if (it.id == id) {
+                it.copy(checkCart = selected)
+            } else {
+                it
+            }
+        }
+    }
+
     fun setCheckedItem(cart: Cart): MutableLiveData<Cart> {
         _checkItem.value = cart
         return _checkItem
@@ -47,6 +57,7 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
     fun subtractItem() {
         _quantity.value = (_quantity.value)?.minus(1)
     }
+
 
     val listCart: LiveData<List<Cart>> = repository.allCart.asLiveData()
 
