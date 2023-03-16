@@ -36,13 +36,12 @@ class NavFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.imgCloseDrawer.setOnClickListener {
             val intent = Intent(requireContext(), HomeActivity::class.java)
-            intent.action = Utils.closeDrawer
             startActivity(intent)
         }
         binding.logout.setOnClickListener {
            val sharedPreferences=activity?.getSharedPreferences(Utils.KEY_USER,Context.MODE_PRIVATE)
             val editor:SharedPreferences.Editor= sharedPreferences?.edit()!!
-            editor?.clear()?.commit()
+            editor.clear()?.apply()
             requireActivity().finishAffinity()
         }
 

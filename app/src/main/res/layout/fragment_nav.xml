@@ -7,6 +7,7 @@
     tools:context="com.nhatthanh.shopping.product.fragment.NavFragment">
 
     <ImageView
+        android:padding="8dp"
         android:id="@+id/img_close_drawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
