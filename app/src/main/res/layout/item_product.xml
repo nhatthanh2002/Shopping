@@ -119,6 +119,15 @@
             app:layout_constraintTop_toBottomOf="@id/background_product"
             tools:ignore="HardcodedText" />
 
+         <ImageView
+             android:src="@drawable/cheo"
+             app:layout_constraintTop_toTopOf="@id/tv_promotion"
+             app:layout_constraintBottom_toBottomOf="@id/tv_promotion"
+             app:layout_constraintEnd_toEndOf="@id/tv_promotion"
+             app:layout_constraintStart_toStartOf="@id/tv_promotion"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

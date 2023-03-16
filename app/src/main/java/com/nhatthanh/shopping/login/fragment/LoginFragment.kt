@@ -98,9 +98,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setUpData() {
-        loginViewModel.allUser.observe(viewLifecycleOwner) {
 
-        }
     }
 
 }

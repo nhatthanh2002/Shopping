@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import com.nhatthanh.shopping.R
 import com.nhatthanh.shopping.Utils
 import com.nhatthanh.shopping.databinding.ActivityLoginBinding
 import com.nhatthanh.shopping.login.fragment.LoginFragment
 import com.nhatthanh.shopping.product.activity.HomeActivity
+import java.util.Timer
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -22,9 +24,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportFragmentManager.beginTransaction().replace(R.id.container, LoginFragment())
             .addToBackStack(null).commit()
-        if (sharedPreferences!=null){
-            startActivity(Intent(this,HomeActivity::class.java))
-            finish()
+        if (sharedPreferences != null) {
+            Handler().postDelayed({
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
+            }, 1000)
+
         }
     }
 }

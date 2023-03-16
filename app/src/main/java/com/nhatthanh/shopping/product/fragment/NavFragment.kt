@@ -14,6 +14,7 @@ import com.nhatthanh.shopping.R
 import com.nhatthanh.shopping.Utils
 import com.nhatthanh.shopping.navigtion.adapter.ItemNavAdapter
 import com.nhatthanh.shopping.databinding.FragmentNavBinding
+import com.nhatthanh.shopping.login.activity.LoginActivity
 import com.nhatthanh.shopping.navigtion.adapter.model.ItemNav
 import com.nhatthanh.shopping.product.activity.HomeActivity
 
@@ -39,10 +40,7 @@ class NavFragment : Fragment() {
             startActivity(intent)
         }
         binding.logout.setOnClickListener {
-           val sharedPreferences=activity?.getSharedPreferences(Utils.KEY_USER,Context.MODE_PRIVATE)
-            val editor:SharedPreferences.Editor= sharedPreferences?.edit()!!
-            editor.clear()?.apply()
-            requireActivity().finishAffinity()
+            startActivity(Intent(requireContext(),LoginActivity::class.java))
         }
 
         setUpItemNav()
