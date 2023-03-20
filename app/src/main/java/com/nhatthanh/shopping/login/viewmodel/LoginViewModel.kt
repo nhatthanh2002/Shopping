@@ -25,6 +25,7 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
     fun checkRegister(): Boolean {
         return allUser.value != null
     }
+
 }
 
 class LoginMolderFactory(private val userRepository: UserRepository) : ViewModelProvider.Factory {

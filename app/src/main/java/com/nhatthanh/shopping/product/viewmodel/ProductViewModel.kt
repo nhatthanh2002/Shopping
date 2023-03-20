@@ -19,37 +19,25 @@ class ProductViewModel : ViewModel() {
 
     private val _listSeeAll = MutableLiveData<List<SeeAll>>()
     val listSeeAll: LiveData<List<SeeAll>>
-        get() = getListSeeAll()
+        get() = _listSeeAll
 
-    private val _listReview = MutableLiveData<List<Reviews>>()
-    val listReview: LiveData<List<Reviews>>
-        get() = _listReview
-
-
-    private fun getListSeeAll(): MutableLiveData<List<SeeAll>> {
+    init {
         _listSeeAll.value = mutableListOf(
             SeeAll("New product", "See all")
         )
-        return _listSeeAll
     }
 
     fun setProduct(products: ProductDetail) {
         _product.value = products
     }
 
-    fun getListProduct(list: List<Products>): MutableLiveData<List<Products>> {
-
+    fun setListProduct(list: List<Products>) {
         _listProduct.value = list
-        return _listProduct
     }
 
-    fun getListNotifications(list: List<Notifications>): MutableLiveData<List<Notifications>> {
+    fun setListNotifications(list: List<Notifications>) {
         _listNotification.value = list
-        return _listNotification
     }
 
-    fun getListReview(list: List<Reviews>): MutableLiveData<List<Reviews>> {
-        _listReview.value = list
-        return _listReview
-    }
+
 }

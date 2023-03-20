@@ -61,7 +61,7 @@ class HomeFragment : Fragment(), GetPositionItem {
                 response: Response<List<Products>?>
             ) {
                 val listProduct = response.body()
-                listProduct?.let { productViewModel.getListProduct(it) }
+                listProduct?.let { productViewModel.setListProduct(it) }
             }
 
             override fun onFailure(call: Call<List<Products>?>, t: Throwable) {
@@ -78,7 +78,7 @@ class HomeFragment : Fragment(), GetPositionItem {
                     response: Response<List<Notifications>?>
                 ) {
                     val listNotification = response.body()
-                    listNotification?.let { productViewModel.getListNotifications(it) }
+                    listNotification?.let { productViewModel.setListNotifications(it) }
                 }
 
                 override fun onFailure(call: Call<List<Notifications>?>, t: Throwable) {

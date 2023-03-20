@@ -9,43 +9,58 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nhatthanh.shopping.Utils
 import com.nhatthanh.shopping.databinding.ItemCartBinding
+import com.nhatthanh.shopping.product.listenerevent.CartListener
 import com.nhatthanh.shopping.product.model.Cart
 
 class DiffUtilCarAdapter(
     private val context: Context,
-    private val checkCartItem: (Int, Boolean) -> Unit
+    private val cartListener: CartListener,
 ) :
     ListAdapter<Cart, DiffUtilCarAdapter.CarViewHolder>(DiffCallback()) {
 
+    private val listCartSelected = ArrayList<Cart>()
 
     inner class CarViewHolder(
         private val binding: ItemCartBinding,
-        private val checkCartItem: (Int, Boolean) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
-
-        lateinit var cart: Cart
-
-        init {
-            binding.checkItem.setOnClickListener { checkCartItem(cart.id, !it.isSelected) }
-        }
 
         fun bind(item: Cart) {
             with(binding) {
                 with(item) {
-                    Glide.with(context).load(imageCart).centerCrop().override(80, 80)
+                    Glide.with(context).load(imageCart).fitCenter()
                         .into(imgProductCartItem)
                     tvNameProductCart.text = nameCart
                     tvPriceProductCart.text =
                         Utils.formatCurrency.format(sumPrice * quantityItem).toString()
                     tvQuantityItem.text = quantityItem.toString()
-                    checkItem.setOnClickListener { checkCartItem(id, !it.isSelected) }
+                    checkItem.isChecked = checkCart
+                    checkItem.setOnClickListener {
+                        if (checkItem.isChecked) {
+                            cartListener.listenUpdateCartItem(id, checkItem.isChecked)
+                            listCartSelected.add(item)
+                        } else {
+                            cartListener.listenUpdateCartItem(id, checkItem.isChecked)
+                            listCartSelected.remove(item)
+                        }
+                        cartListener.cartSelected(listCartSelected)
+                    }
+                    btnDelete.setOnClickListener {
+                        listCartSelected.remove(item)
+                        cartListener.deleteCart(id)
+                    }
+                    btnAddItem.setOnClickListener {
+                        cartListener.addCart(id, quantityItem)
+                    }
+                    btnSubtractItem.setOnClickListener {
+                        cartListener.subtractCart(id, quantityItem)
+                    }
                 }
             }
         }
 
-        fun bindCheckCartItem(check: Boolean) {
-            binding.checkItem.isChecked = check
+        fun bindCheckCartItem(item: Cart) {
+            binding.checkItem.isChecked = item.checkCart
         }
 
     }
@@ -56,7 +71,7 @@ class DiffUtilCarAdapter(
                 LayoutInflater.from(context),
                 parent,
                 false
-            ), checkCartItem
+            )
         )
     }
 
@@ -73,7 +88,7 @@ class DiffUtilCarAdapter(
             super.onBindViewHolder(holder, position, payloads)
         } else {
             if (payloads[0] == true) {
-                holder.bindCheckCartItem(getItem(position).checkCart)
+                holder.bindCheckCartItem(getItem(position))
             }
         }
 

@@ -2,6 +2,7 @@ package com.nhatthanh.shopping.product.viewmodel
 
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.nhatthanh.shopping.Utils
 import com.nhatthanh.shopping.localData.repository.CartRepository
 import com.nhatthanh.shopping.product.model.Cart
 import kotlinx.coroutines.launch
@@ -10,11 +11,8 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
     private val _quantity = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
-    private val _checkItem = MutableLiveData<Cart>()
-    val checkItem: LiveData<Cart> = _checkItem
-
-    private val _totalPriceItemCart = MutableLiveData<Double>()
-    val totalPriceItemCart: LiveData<Double> = _totalPriceItemCart
+    private val _listCart = MutableLiveData<List<Cart>>()
+    val listCart: LiveData<List<Cart>> = _listCart
 
     private val _quantityCartSelected = MutableLiveData<Int>()
     val quantityCarSelected: LiveData<Int> = _quantityCartSelected
@@ -30,24 +28,37 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
         _quantity.value = 1
     }
 
-    fun setTotalPriceCart(total: Double): MutableLiveData<Double> {
-        _totalPriceItemCart.value = total
-        return _totalPriceItemCart
+    init {
+        viewModelScope.launch {
+            repository.allCart.collect { list ->
+                _listCart.postValue(list)
+            }
+        }
     }
 
-    fun setCheckItemCartSelected(id: Int, selected: Boolean) {
-        listCart.value?.map {
+    fun getTotalPriceCart(): String {
+        var total = 0.0
+        for (item in _listCartSelected.value!!) {
+            total += (item.quantityItem * item.sumPrice)
+        }
+        return Utils.formatCurrency.format(total).toString()
+    }
+
+
+    fun setCheckCartAll(checkAll: Boolean) {
+        _listCart.value = _listCart.value?.map {
+            it.copy(checkCart = checkAll)
+        }
+    }
+
+    fun setCheckItemCart(id: Int, selected: Boolean) {
+        _listCart.value = _listCart.value?.map {
             if (it.id == id) {
                 it.copy(checkCart = selected)
             } else {
                 it
             }
         }
-    }
-
-    fun setCheckedItem(cart: Cart): MutableLiveData<Cart> {
-        _checkItem.value = cart
-        return _checkItem
     }
 
     fun addItem() {
@@ -58,8 +69,6 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
         _quantity.value = (_quantity.value)?.minus(1)
     }
 
-
-    val listCart: LiveData<List<Cart>> = repository.allCart.asLiveData()
 
     fun insertCar(cart: Cart) = viewModelScope.launch {
         repository.insertCart(cart)
@@ -73,23 +82,19 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
         repository.updateQuantity(id, quantity)
     }
 
-    fun updateCartSelected(id: Int, check: Boolean) = viewModelScope.launch {
-        repository.updateCartSelected(id, check)
-    }
-
-    fun getListCartSelected(list: List<Cart>): MutableLiveData<List<Cart>> {
+    fun setListCartSelected(list: List<Cart>) {
         _listCartSelected.value = list
-        return _listCartSelected
     }
 
-    fun setItemSelected(list: List<Cart>): MutableLiveData<Int> {
-        _quantityCartSelected.value = list.size
-        return _quantityCartSelected
+
+    fun getQuantityItemSelected():String {
+        var quantity=0
+        quantity = _listCartSelected.value!!.size
+        return "Buy ($quantity item)"
     }
 
-    fun getListIDCart(list: List<Int>): MutableLiveData<List<Int>> {
+    fun setListIDCart(list: List<Int>) {
         _listIdCart.value = list
-        return _listIdCart
     }
 
 

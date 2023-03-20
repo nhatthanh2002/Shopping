@@ -51,8 +51,7 @@ class MainAdapterProduct(
                     tvBrandStoreProduct.text = seller
                     Glide.with(context)
                         .load(image)
-                        .override(180, 160)
-                        .centerCrop()
+                        .fitCenter()
                         .into(imgProduct)
                     layoutProduct.setOnClickListener {
                         getPositionItem.getItem(id)

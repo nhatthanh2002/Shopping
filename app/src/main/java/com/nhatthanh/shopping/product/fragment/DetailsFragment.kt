@@ -38,7 +38,7 @@ class DetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -89,8 +89,7 @@ class DetailsFragment : Fragment() {
                                 with(binding) {
                                     with(product) {
                                         tvNameProduct.text = name
-                                        Glide.with(requireContext()).load(image).override(300, 330)
-                                            .centerCrop().into(imgProduct)
+                                        Glide.with(requireContext()).load(image).fitCenter().into(imgProduct)
                                         tvPromotion.text =
                                             Utils.formatCurrency.format(price).toString()
                                         tvPriceProduct.text =

@@ -27,9 +27,4 @@ class CartRepository(private val cartDao: CartDao) {
         cartDao.updateQuantity(id, quantity)
     }
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    suspend fun updateCartSelected(id: Int, check: Boolean) {
-        cartDao.updateCartSelected(id, check)
-    }
 }

@@ -15,9 +15,6 @@ interface CartDao {
     @Query("UPDATE cart SET quantityItem = :quantity WHERE id =:id")
     suspend fun updateQuantity(id: Int, quantity: Int)
 
-    @Query("UPDATE cart SET checkCart = :check WHERE id =:id")
-    suspend fun updateCartSelected(id: Int, check:Boolean)
-
     @Query("SELECT * FROM cart  ORDER BY id DESC")
     fun getAllCart(): Flow<List<Cart>>
 

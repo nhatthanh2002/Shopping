@@ -72,15 +72,14 @@
         app:layout_constraintTop_toBottomOf="@id/toolBar">
 
         <com.google.android.material.appbar.AppBarLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="251dp"
-                android:id="@+id/app_bar"
                 android:background="#F3D9E8"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
@@ -96,8 +95,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <TextView
                     android:id="@+id/tv_name_product"
@@ -136,13 +136,13 @@
                     tools:ignore="HardcodedText" />
 
                 <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/cheo"
-                    app:layout_constraintTop_toTopOf="@id/tv_promotion"
                     app:layout_constraintBottom_toBottomOf="@id/tv_promotion"
                     app:layout_constraintEnd_toEndOf="@id/tv_promotion"
                     app:layout_constraintStart_toStartOf="@id/tv_promotion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toTopOf="@id/tv_promotion" />
 
                 <include
                     android:id="@+id/layout_brand_rate_product_detail"
@@ -154,41 +154,27 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_name_product" />
 
-                                <com.google.android.material.tabs.TabLayout
-                                    android:id="@+id/tab_layout"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="25dp"
-                                    android:layout_marginTop="10dp"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/layout_brand_rate_product_detail"
-                                    app:tabGravity="fill"
-                                    app:tabIndicatorColor="#01A688"
-                                    app:tabIndicatorGravity="bottom"
-                                    app:tabIndicatorHeight="1dp"
-                                    app:tabMode="fixed"
-                                    app:tabSelectedTextColor="#01A688"
-                                    app:tabTextAppearance="@style/quantity"
-                                    app:tabTextColor="#8B9E9E" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_brand_rate_product_detail"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="#01A688"
+                    app:tabIndicatorGravity="bottom"
+                    app:tabIndicatorHeight="1dp"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="#01A688"
+                    app:tabTextAppearance="@style/quantity"
+                    app:tabTextColor="#8B9E9E" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--            <com.google.android.material.tabs.TabLayout-->
-<!--                android:id="@+id/tab_layout"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="25dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                app:tabGravity="fill"-->
-<!--                app:tabIndicatorColor="#01A688"-->
-<!--                app:tabIndicatorGravity="bottom"-->
-<!--                app:tabIndicatorHeight="1dp"-->
-<!--                app:tabMode="fixed"-->
-<!--                app:tabSelectedTextColor="#01A688"-->
-<!--                app:tabTextAppearance="@style/quantity"-->
-<!--                app:tabTextColor="#8B9E9E" />-->
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -209,9 +195,9 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
