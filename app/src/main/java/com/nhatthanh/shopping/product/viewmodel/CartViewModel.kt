@@ -17,9 +17,8 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
     private val _quantityCartSelected = MutableLiveData<Int>()
     val quantityCarSelected: LiveData<Int> = _quantityCartSelected
 
-    private val _listCartSelected = MutableLiveData<List<Cart>>()
-    val listCartSelected: LiveData<List<Cart>>
-        get() = _listCartSelected
+    private val _listCartSelected = MutableLiveData<ArrayList<Cart>>()
+    val listCartSelected: MutableLiveData<ArrayList<Cart>> = _listCartSelected
 
     private val _listIdCart = MutableLiveData<List<Int>>()
     val listIdCart: LiveData<List<Int>> = _listIdCart
@@ -45,16 +44,46 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
     }
 
 
+    fun checkCartItemExist(cart: Cart): Boolean {
+        val lisItem = listCart.value
+        for (item in lisItem!!) {
+            if (item.id == cart.id) {
+                var quantity = item.quantityItem
+                quantity += 1
+                updateQuantity(item.id, quantity)
+                return true
+            }
+        }
+        return false
+    }
+
     fun setCheckCartAll(checkAll: Boolean) {
         _listCart.value = _listCart.value?.map {
             it.copy(checkCart = checkAll)
         }
     }
 
+
     fun setCheckItemCart(id: Int, selected: Boolean) {
         _listCart.value = _listCart.value?.map {
             if (it.id == id) {
                 it.copy(checkCart = selected)
+            } else {
+                it
+            }
+        }
+    }
+
+
+    fun setListCartSelected(list: ArrayList<Cart>) {
+        _listCartSelected.value = list
+    }
+
+
+    fun setQuantityItemCart(id: Int, quantity: Int) {
+        _listCart.value = _listCart.value?.map {
+            if (it.id == id) {
+                it.copy(quantityItem = quantity)
             } else {
                 it
             }
@@ -82,13 +111,13 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
         repository.updateQuantity(id, quantity)
     }
 
-    fun setListCartSelected(list: List<Cart>) {
-        _listCartSelected.value = list
+
+    fun clearListCartSelected() {
+        _listCartSelected.value?.clear()
     }
 
-
-    fun getQuantityItemSelected():String {
-        var quantity=0
+    fun getQuantityItemSelected(): String {
+        var quantity = 0
         quantity = _listCartSelected.value!!.size
         return "Buy ($quantity item)"
     }

@@ -1,6 +1,8 @@
 package com.nhatthanh.shopping.product.adapter
 
 import android.content.Context
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -20,6 +22,7 @@ class DiffUtilCarAdapter(
 
     private val listCartSelected = ArrayList<Cart>()
 
+    @Suppress("DEPRECATION")
     inner class CarViewHolder(
         private val binding: ItemCartBinding,
     ) :
@@ -37,30 +40,40 @@ class DiffUtilCarAdapter(
                     checkItem.isChecked = checkCart
                     checkItem.setOnClickListener {
                         if (checkItem.isChecked) {
-                            cartListener.listenUpdateCartItem(id, checkItem.isChecked)
+                            cartListener.listenUpdateCartItem(id, true)
                             listCartSelected.add(item)
                         } else {
-                            cartListener.listenUpdateCartItem(id, checkItem.isChecked)
+                            cartListener.listenUpdateCartItem(id, false)
                             listCartSelected.remove(item)
                         }
                         cartListener.cartSelected(listCartSelected)
                     }
                     btnDelete.setOnClickListener {
-                        listCartSelected.remove(item)
                         cartListener.deleteCart(id)
                     }
                     btnAddItem.setOnClickListener {
                         cartListener.addCart(id, quantityItem)
+                        cartListener.listenUpdateQuantityItem(id, quantityItem)
                     }
                     btnSubtractItem.setOnClickListener {
                         cartListener.subtractCart(id, quantityItem)
+                        cartListener.listenUpdateQuantityItem(id, quantityItem)
                     }
                 }
             }
         }
 
-        fun bindCheckCartItem(item: Cart) {
-            binding.checkItem.isChecked = item.checkCart
+        fun updateItem(bundle: Bundle) {
+            with(binding) {
+                with(bundle) {
+                    if (containsKey("check")) {
+                        checkItem.isChecked = getBoolean("check")
+                    }
+                    if (containsKey("quantity")) {
+                        tvQuantityItem.text = getInt("quantity").toString()
+                    }
+                }
+            }
         }
 
     }
@@ -84,12 +97,11 @@ class DiffUtilCarAdapter(
         position: Int,
         payloads: MutableList<Any>
     ) {
-        if (payloads.isEmpty()) {
+        if (payloads.isEmpty() || payloads[0] !is Bundle) {
             super.onBindViewHolder(holder, position, payloads)
         } else {
-            if (payloads[0] == true) {
-                holder.bindCheckCartItem(getItem(position))
-            }
+            val bundle = payloads[0] as Bundle
+            holder.updateItem(bundle)
         }
 
     }
@@ -105,7 +117,21 @@ class DiffCallback : DiffUtil.ItemCallback<Cart>() {
     }
 
     override fun getChangePayload(oldItem: Cart, newItem: Cart): Any? {
-        return if (oldItem.checkCart != newItem.checkCart) true else null
+        if (oldItem.id == newItem.id) {
+            return if (oldItem.checkCart == newItem.checkCart) {
+                super.getChangePayload(oldItem, newItem)
+            } else {
+                val bundle = Bundle()
+                if (oldItem.checkCart != newItem.checkCart) {
+                    bundle.putBoolean("check", newItem.checkCart)
+                }
+                if (oldItem.quantityItem != newItem.quantityItem) {
+                    bundle.putInt("quantity", newItem.quantityItem)
+                }
+                bundle
+            }
+        }
+        return super.getChangePayload(oldItem, newItem)
     }
 
 }

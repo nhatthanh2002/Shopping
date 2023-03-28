@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
@@ -53,7 +54,12 @@ class DetailsFragment : Fragment() {
         setQuantityCart()
         id?.let { setDataForProductDetail(it) }
         binding.btnAddCart.setOnClickListener {
-            cartViewModel.insertCar(cart)
+            with(cartViewModel) {
+                insertCar(cart)
+                if (checkCartItemExist(cart)) {
+                    Toast.makeText(requireContext(), "Item is exist", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         binding.btnAdd.setOnClickListener {
@@ -89,7 +95,8 @@ class DetailsFragment : Fragment() {
                                 with(binding) {
                                     with(product) {
                                         tvNameProduct.text = name
-                                        Glide.with(requireContext()).load(image).fitCenter().into(imgProduct)
+                                        Glide.with(requireContext()).load(image).fitCenter()
+                                            .into(imgProduct)
                                         tvPromotion.text =
                                             Utils.formatCurrency.format(price).toString()
                                         tvPriceProduct.text =
@@ -100,6 +107,7 @@ class DetailsFragment : Fragment() {
                                         }
                                         cartViewModel.quantity.observe(viewLifecycleOwner) { quantity ->
                                             cart = Cart(
+                                                id = id,
                                                 quantityItem = quantity,
                                                 sumPrice = sale_price * quantity,
                                                 imageCart = image,

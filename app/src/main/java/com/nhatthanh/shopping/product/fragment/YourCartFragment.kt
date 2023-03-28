@@ -29,6 +29,8 @@ class YourCartFragment : Fragment(), CartListener {
         CartMolderFactory((requireActivity().application as MainApplication).cartRepository)
     }
 
+    private lateinit var listListenerItemCart: ArrayList<Cart>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +42,7 @@ class YourCartFragment : Fragment(), CartListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeActivity = activity as HomeActivity
+        listListenerItemCart = ArrayList()
         choiceAllItem()
         buyItem()
         homeActivity.checkFragmentOnActivity()
@@ -87,46 +90,51 @@ class YourCartFragment : Fragment(), CartListener {
 
     @SuppressLint("SetTextI18n")
     private fun choiceAllItem() {
-        val listAll = ArrayList<Cart>()
         with(binding) {
             with(cartViewModel) {
                 checkAll.setOnClickListener {
                     if (checkAll.isChecked) {
                         setCheckCartAll(true)
+                        clearListCartSelected()
                         listCart.observe(viewLifecycleOwner) {
-                            //cartAdapter.submitList(it)
-                            listAll.addAll(it)
-                            Log.e("List True", "${listAll.size}")
-                            setListCartSelected(listAll)
+                            if (listListenerItemCart.size == it.size)
+                                return@observe
+                            listListenerItemCart.addAll(it)
                         }
-                        binding.tvBuyItem.text = getQuantityItemSelected()
-                        binding.totalPrice.text = getTotalPriceCart()
-
+                        setListCartSelected(listListenerItemCart)
+                        listCartSelected.observe(viewLifecycleOwner) {
+                            Log.e("Size list True", "${it.size}")
+                        }
                     } else {
                         setCheckCartAll(false)
-                        listCart.observe(viewLifecycleOwner) {
-                            //cartAdapter.submitList(it)
-                            listAll.clear()
-                            Log.e("List false", "${listAll.size}")
-                            setListCartSelected(listAll)
+                        clearListCartSelected()
+                        listListenerItemCart.clear()
+                        listCartSelected.observe(viewLifecycleOwner) {
+                            Log.e("Size list False", "${it.size}")
                         }
-                        binding.tvBuyItem.text = getQuantityItemSelected()
-                        binding.totalPrice.text = getTotalPriceCart()
+                        setListCartSelected(listListenerItemCart)
+                    }
+                    binding.tvBuyItem.text = getQuantityItemSelected()
+                    binding.totalPrice.text = getTotalPriceCart()
+                    buyItem()
+                }
 
+                listCart.observe(viewLifecycleOwner) {
+                    listCartSelected.observe(viewLifecycleOwner){listSelected->
+                        checkAll.isChecked = listSelected.size==it.size
                     }
                 }
 
-                listCart.observe(viewLifecycleOwner) { listCartItem ->
-                    listCartSelected.observe(viewLifecycleOwner) { listCartSelectedItem ->
-                        checkAll.isChecked = listCartSelectedItem.size == listCartItem.size
-                    }
-                }
             }
         }
     }
 
     override fun listenUpdateCartItem(id: Int, check: Boolean) {
         cartViewModel.setCheckItemCart(id, check)
+    }
+
+    override fun listenUpdateQuantityItem(id: Int, quantity: Int) {
+        cartViewModel.setQuantityItemCart(id, quantity)
     }
 
 
@@ -156,9 +164,9 @@ class YourCartFragment : Fragment(), CartListener {
     override fun cartSelected(list: ArrayList<Cart>) {
         cartViewModel.apply {
             setListCartSelected(list)
+            Log.e("List","${list.size}")
             binding.tvBuyItem.text = getQuantityItemSelected()
             binding.totalPrice.text = getTotalPriceCart()
         }
-
     }
 }

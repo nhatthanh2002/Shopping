@@ -7,7 +7,7 @@ import java.io.Serializable
 
 @Entity(tableName = "cart")
 data class Cart(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id")
     var id: Int = 0,
     @ColumnInfo(name = "quantityItem")

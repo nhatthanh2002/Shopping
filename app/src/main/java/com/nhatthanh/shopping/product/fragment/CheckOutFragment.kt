@@ -37,13 +37,13 @@ class CheckOutFragment : Fragment(), GetIDItemCarSelected {
 
         binding.btnBack.setOnClickListener { activity?.supportFragmentManager?.popBackStack() }
         binding.tvContinue.setOnClickListener {
-
             cartViewModel.apply {
                 listIdCart.observe(viewLifecycleOwner) { listID ->
                     for (id in listID) {
                         deleteCart(id)
                     }
                 }
+                clearListCartSelected()
             }
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragment_current, HomeFragment())?.commit()
